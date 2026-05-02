@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Share - test A</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="test A" />
+    <meta property="og:description" content="chú thích" />
+    <meta property="og:image" content="https://mybestsite.vn/test9.jpg?v=123">
+	<meta property="og:url" content="https://mybestsite.vn/testA.html?v=123">
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="test A">
+    <meta name="twitter:description" content="chú thích">
+    <meta name="twitter:image" content="https://mybestsite.vn/test9.jpg">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 2px;
+            font-family: Arial, sans-serif;
+            min-width: 140px;
+            font-weight: 500;
+        }
+
+        .btn-facebook { background-color: #1877F2; }
+        .btn-zalo { background-color: #0068FF; }
+        .btn-x { background-color: #000000; }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .debugger-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            font-size: 14px;
+            color: #333;
+            box-sizing: border-box;
+            word-wrap: break-word;
+        }
+
+        .debugger-box a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Test Share Facebook - OK</h1>
+
+    <div class="image-container">
+        <img src="https://mybestsite.vn/test9.jpg" alt="Test A Image">
+    </div>
+
+    <div class="share-buttons">
+        <button class="btn btn-facebook" onclick="shareFacebook()">Share Facebook</button>
+        <button class="btn btn-zalo" onclick="shareZalo()">Share Zalo</button>
+        <button class="btn btn-x" onclick="shareX()">Share X</button>
+    </div>
+
+    <div class="debugger-box">
+        Link hiện tại để test Debugger:
+        <a id="current-link" href="#"></a>
+    </div>
+
+    <script>
+        // Lấy URL thực tế từ trình duyệt
+        const currentUrl = window.location.href;
+        
+        // Hiển thị link vào box Debugger dưới chân trang
+        const linkElement = document.getElementById('current-link');
+        linkElement.innerText = currentUrl;
+        linkElement.href = currentUrl;
+
+        // Hàm Share Facebook
+        function shareFacebook() {
+            const fbUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl);
+            window.open(fbUrl, 'fbShareWindow', 'height=600, width=800, top=' + (window.innerHeight/2 - 300) + ', left=' + (window.innerWidth/2 - 400));
+        }
+
+        // Hàm Share Zalo
+        function shareZalo() {
+            const zaloUrl = 'https://sp.zalo.me/plugins/share?url=' + encodeURIComponent(currentUrl);
+            window.open(zaloUrl, 'zaloShareWindow', 'height=600, width=800, top=' + (window.innerHeight/2 - 300) + ', left=' + (window.innerWidth/2 - 400));
+        }
+
+        // Hàm Share X (Twitter)
+        function shareX() {
+            const text = 'test A - chú thích';
+            const xUrl = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(currentUrl) + '&text=' + encodeURIComponent(text);
+            window.open(xUrl, 'xShareWindow', 'height=600, width=800, top=' + (window.innerHeight/2 - 300) + ', left=' + (window.innerWidth/2 - 400));
+        }
+    </script>
+
+</body>
+</html>
