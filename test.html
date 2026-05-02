@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Test Share Facebook</title>
+
+<!-- ================== CẤU HÌNH DUY NHẤT ================== -->
+<script>
+const CONFIG = {
+    domain: "https://thanhtho383.github.io/mybestsite", // 🔥 sửa domain tại đây
+    page: "test.html",                                  // 🔥 tên file
+    image: "test.jpg",                                  // 🔥 tên ảnh
+    title: "Test Share Facebook - OK",
+    desc: "Test hiển thị ảnh đại diện Facebook"
+};
+</script>
+<!-- ======================================================= -->
+
+<!-- OG sẽ được JS inject -->
+<script>
+(function() {
+    const baseUrl = CONFIG.domain + "/" + CONFIG.page;
+    const imgUrl  = CONFIG.domain + "/" + CONFIG.image + "?v=" + Date.now();
+
+    document.write(`
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${CONFIG.title}">
+        <meta property="og:description" content="${CONFIG.desc}">
+        <meta property="og:url" content="${baseUrl}">
+        <meta property="og:image" content="${imgUrl}">
+        <meta property="og:image:secure_url" content="${imgUrl}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:site_name" content="${location.hostname}">
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="${imgUrl}">
+    `);
+})();
+</script>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    padding: 50px;
+}
+img {
+    max-width: 400px;
+    margin: 20px auto;
+    display: block;
+}
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #1877f2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.box {
+    margin-top: 30px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="title"></h1>
+
+<img id="img">
+
+<button onclick="shareFB()">Share Facebook</button>
+
+<div class="box">
+    🔗 Link test Debugger:
+    <br>
+    <a id="link" target="_blank"></a>
+</div>
+
+<script>
+// ===== tự động build URL =====
+const base = CONFIG.domain + "/" + CONFIG.page;
+const testUrl = base + "?fbv=" + Date.now();
+const imgUrl = CONFIG.domain + "/" + CONFIG.image;
+
+// ===== render nội dung =====
+document.getElementById("title").innerText = CONFIG.title;
+document.getElementById("img").src = imgUrl;
+
+document.getElementById("link").innerText = testUrl;
+document.getElementById("link").href = testUrl;
+
+// ===== share =====
+function shareFB() {
+    window.open(
+        "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(testUrl),
+        "_blank",
+        "width=600,height=400"
+    );
+}
+</script>
+
+</body>
+</html>
